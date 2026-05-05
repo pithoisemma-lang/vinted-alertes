@@ -70,18 +70,18 @@ def login():
     try:
         get_csrf_token()
         time.sleep(2)
-
+        
         payload = {
             "login": VINTED_EMAIL,
             "password": VINTED_PASSWORD,
         }
-
+        
         r = session.post(
             "https://www.vinted.fr/api/v2/sessions",
             json=payload,
             timeout=15
         )
-
+        
         if r.status_code == 200:
             print("✅ Connecté à Vinted !")
             return True
@@ -168,7 +168,7 @@ def scanner():
 
 def main():
     print("🚀 Vinted Alertes démarré !")
-
+    
     if not login():
         envoyer_telegram("⚠️ Impossible de se connecter à Vinted. Vérifie les identifiants.")
         return
